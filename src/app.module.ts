@@ -6,12 +6,12 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/users.module';
 import { User } from './users/models/user.model';
 import { ComicsModule } from './comics/comics.module';
-import { CollectionsModule } from './collections/collections.module';
 import { ComicsCategoriesModule } from './comics-categories/comics-categories.module';
 import { ComicsAuthorsModule } from './comics-authors/comics-authors.module';
+import { CategoriesModule } from './categories/categories.module';
 import { AuthorsModule } from './authors/authors.module';
 import { PublishersModule } from './publishers/publishers.module';
-import { CategoriesModule } from './categories/categories.module';
+import { CollectionsModule } from './collections/collections.module';
 
 @Module({
   imports: [
