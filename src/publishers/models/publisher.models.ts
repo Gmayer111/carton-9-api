@@ -1,11 +1,4 @@
-import {
-  BelongsTo,
-  Column,
-  ForeignKey,
-  Model,
-  Table,
-} from 'sequelize-typescript';
-import { Collection } from 'src/collections/models/collection.models';
+import { Column, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class Publisher extends Model<Publisher> {
