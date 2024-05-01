@@ -9,6 +9,8 @@ import { Role } from './roles/models/role.model';
 import { RoleModule } from './roles/roles.module';
 import { ComicsModule } from './comics/comics.module';
 import { CollectionsModule } from './collections/collections.module';
+import { AuthorsModule } from './authors/authors.module';
+import { CategoriesModule } from './categories/categories.module';
 import { CategoriesModule } from './categories/categories.module';
 import { AuthorsModule } from './authors/authors.module';
 import { PublishersModule } from './publishers/publishers.module';
