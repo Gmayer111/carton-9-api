@@ -9,6 +9,8 @@ import { Role } from './roles/models/role.model';
 import { RoleModule } from './roles/roles.module';
 import { ComicsModule } from './comics/comics.module';
 import { CollectionsModule } from './collections/collections.module';
+import { ComicsCategoriesModule } from './comics-categories/comics-categories.module';
+import { ComicsAuthorsModule } from './comics-authors/comics-authors.module';
 import { AuthorsModule } from './authors/authors.module';
 import { CategoriesModule } from './categories/categories.module';
 import { CategoriesModule } from './categories/categories.module';
@@ -35,6 +37,8 @@ import { CollectionsModule } from './collections/collections.module';
     CategoriesModule,
     AuthorsModule,
     PublishersModule,
+    ComicsAuthorsModule,
+    ComicsCategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
