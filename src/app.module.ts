@@ -7,6 +7,16 @@ import { UserModule } from './users/users.module';
 import { User } from './users/models/user.model';
 import { Role } from './roles/models/role.model';
 import { RoleModule } from './roles/roles.module';
+import { ComicsModule } from './comics/comics.module';
+import { CollectionsModule } from './collections/collections.module';
+import { ComicsCategoriesModule } from './comics-categories/comics-categories.module';
+import { ComicsAuthorsModule } from './comics-authors/comics-authors.module';
+import { AuthorsModule } from './authors/authors.module';
+import { CategoriesModule } from './categories/categories.module';
+import { CategoriesModule } from './categories/categories.module';
+import { AuthorsModule } from './authors/authors.module';
+import { PublishersModule } from './publishers/publishers.module';
+import { CollectionsModule } from './collections/collections.module';
 
 @Module({
   imports: [
@@ -22,6 +32,13 @@ import { RoleModule } from './roles/roles.module';
     }),
     UserModule,
     RoleModule,
+    ComicsModule,
+    CollectionsModule,
+    CategoriesModule,
+    AuthorsModule,
+    PublishersModule,
+    ComicsAuthorsModule,
+    ComicsCategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
