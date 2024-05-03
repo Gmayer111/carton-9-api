@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.1.1](https://github.com/Gmayer111/passion-bd-api/compare/v1.1.0...v1.1.1) (2024-05-03)
+
+
+### Bug Fixes
+
+* remove unused role ressource ([#9](https://github.com/Gmayer111/passion-bd-api/issues/9)) ([50b12ef](https://github.com/Gmayer111/passion-bd-api/commit/50b12effd91c6d96a8b920ec244d855326780c28))
+
 ## [1.1.0](https://github.com/Gmayer111/passion-bd-api/compare/v1.0.0...v1.1.0) (2024-05-02)
 
 
