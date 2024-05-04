@@ -1,11 +1,4 @@
-import {
-  BelongsTo,
-  Column,
-  ForeignKey,
-  Model,
-  Table,
-} from 'sequelize-typescript';
-import { Role } from 'src/roles/models/role.model';
+import { Column, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class User extends Model<User> {
@@ -32,11 +25,4 @@ export class User extends Model<User> {
 
   @Column({ allowNull: true })
   picture: string;
-
-  @ForeignKey(() => Role)
-  @Column({ allowNull: false })
-  roleId: number;
-
-  @BelongsTo(() => Role)
-  Role: Role;
 }
