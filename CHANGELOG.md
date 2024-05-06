@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/Gmayer111/passion-bd-api/compare/v1.1.1...v1.2.0) (2024-05-06)
+
+
+### Features
+
+* create db config & migrations WIP ([#5](https://github.com/Gmayer111/passion-bd-api/issues/5)) ([a7773c8](https://github.com/Gmayer111/passion-bd-api/commit/a7773c88d4da863ca0a05df63c5ee3ae2b0adf21))
+
 ## [1.1.1](https://github.com/Gmayer111/passion-bd-api/compare/v1.1.0...v1.1.1) (2024-05-03)
 
 
