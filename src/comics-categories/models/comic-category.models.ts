@@ -12,11 +12,11 @@ import { Comic } from 'src/comics/models/comic.models';
 export class ComicCategory extends Model<ComicCategory> {
   @ForeignKey(() => Comic)
   @Column
-  comicId: Comic;
+  comicId: number;
 
   @ForeignKey(() => Category)
   @Column
-  categoryId: Category;
+  categoryId: number;
 
   @BelongsTo(() => Comic)
   Comic: Comic;
