@@ -1,11 +1,23 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ComicsCategoriesService } from './comics-categories.service';
 import { CreateComicsCategoryDto } from './dto/create-comics-category.dto';
 import { UpdateComicsCategoryDto } from './dto/update-comics-category.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Comics-categories')
 @Controller('comics-categories')
 export class ComicsCategoriesController {
-  constructor(private readonly comicsCategoriesService: ComicsCategoriesService) {}
+  constructor(
+    private readonly comicsCategoriesService: ComicsCategoriesService,
+  ) {}
 
   @Post()
   create(@Body() createComicsCategoryDto: CreateComicsCategoryDto) {
@@ -23,7 +35,10 @@ export class ComicsCategoriesController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComicsCategoryDto: UpdateComicsCategoryDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateComicsCategoryDto: UpdateComicsCategoryDto,
+  ) {
     return this.comicsCategoriesService.update(+id, updateComicsCategoryDto);
   }
 
