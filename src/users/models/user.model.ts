@@ -9,7 +9,7 @@ import {
   Table,
 } from 'sequelize-typescript';
 import * as bcrypt from 'bcrypt';
-import { RoleEnum } from 'src/auth/enums/role.enum';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
 
 @Table
 export class User extends Model<User> {

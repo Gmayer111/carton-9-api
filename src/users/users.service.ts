@@ -13,15 +13,6 @@ export class UsersService {
   async create(createUserDto: CreateUserDto): Promise<User> {
     const { ...createUserDtoNoAuth } = createUserDto;
 
-    // const existingUser = await this.userModel.findOne({
-    //   where: {
-    //     email,
-    //   },
-    // });
-
-    // if (existingUser) return;
-    console.log(createUserDtoNoAuth);
-
     return await this.userModel.create<User>({ ...createUserDtoNoAuth });
   }
 
@@ -29,10 +20,10 @@ export class UsersService {
     return this.userModel.findAll();
   }
 
-  findOne(id: string) {
+  async findOne(email: string): Promise<User | undefined> {
     return this.userModel.findOne({
       where: {
-        id,
+        email,
       },
     });
   }
