@@ -1,8 +1,18 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ComicsAuthorsService } from './comics-authors.service';
 import { CreateComicsAuthorDto } from './dto/create-comics-author.dto';
 import { UpdateComicsAuthorDto } from './dto/update-comics-author.dto';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Comics-authors')
 @Controller('comics-authors')
 export class ComicsAuthorsController {
   constructor(private readonly comicsAuthorsService: ComicsAuthorsService) {}
@@ -23,7 +33,10 @@ export class ComicsAuthorsController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateComicsAuthorDto: UpdateComicsAuthorDto) {
+  update(
+    @Param('id') id: string,
+    @Body() updateComicsAuthorDto: UpdateComicsAuthorDto,
+  ) {
     return this.comicsAuthorsService.update(+id, updateComicsAuthorDto);
   }
 

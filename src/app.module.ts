@@ -6,12 +6,13 @@ import { ConfigModule } from '@nestjs/config';
 import { UserModule } from './users/users.module';
 import { User } from './users/models/user.model';
 import { ComicsModule } from './comics/comics.module';
+import { CollectionsModule } from './collections/collections.module';
+import { AuthModule } from './auth/auth.module';
 import { ComicsCategoriesModule } from './comics-categories/comics-categories.module';
 import { ComicsAuthorsModule } from './comics-authors/comics-authors.module';
 import { CategoriesModule } from './categories/categories.module';
 import { AuthorsModule } from './authors/authors.module';
 import { PublishersModule } from './publishers/publishers.module';
-import { CollectionsModule } from './collections/collections.module';
 import { Category } from './categories/models/category.models';
 import { Comic } from './comics/models/comic.models';
 import { Collection } from './collections/models/collection.models';
@@ -49,6 +50,7 @@ import { ComicCategory } from './comics-categories/models/comic-category.models'
     PublishersModule,
     ComicsAuthorsModule,
     ComicsCategoriesModule,
+    AuthModule,
   ],
   controllers: [AppController],
   providers: [AppService],
