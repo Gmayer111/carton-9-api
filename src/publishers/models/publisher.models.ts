@@ -6,6 +6,9 @@ export class Publisher extends Model<Publisher> {
   picture: string;
 
   @Column({ allowNull: false })
+  name: string;
+
+  @Column({ allowNull: false })
   address: string;
 
   @Column({ allowNull: false })
