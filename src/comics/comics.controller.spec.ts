@@ -8,7 +8,7 @@ describe('ComicsController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ComicsController],
-      providers: [ComicsService],
+      providers: [{ provide: ComicsService, useValue: jest.fn() }],
     }).compile();
 
     controller = module.get<ComicsController>(ComicsController);
