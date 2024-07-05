@@ -22,7 +22,7 @@ export class Comic extends Model<Comic> {
   @Column({ allowNull: false })
   releaseDate: Date;
 
-  @Column({ allowNull: true })
+  @Column({ allowNull: false })
   tome: number;
 
   @ForeignKey(() => Collection)

@@ -7,6 +7,10 @@ export class CreatePublisherDto {
 
   @IsNotEmpty()
   @IsString()
+  name: string;
+
+  @IsNotEmpty()
+  @IsString()
   address: string;
 
   @IsNotEmpty()

@@ -12,7 +12,7 @@ module.exports = {
       description    text         not null,
       releaseDate    varchar(255) not null,
       picture        varchar(255) not null,
-      tome           varchar(255) null,
+      tome           int not null null,
       collectionId   int not null,
       publisherId    int not null,
       createdAt      datetime     not null,
