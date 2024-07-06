@@ -20,6 +20,10 @@ import { Author } from './authors/models/author.models';
 import { ComicAuthor } from './comics-authors/models/comic-author.model';
 import { Publisher } from './publishers/models/publisher.models';
 import { ComicCategory } from './comics-categories/models/comic-category.models';
+import { AuthorizationModule } from './authorization/authorization.module';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth/guards/auth.guard';
+import { RolesGuard } from './authorization/roles.guard';
 
 @Module({
   imports: [
@@ -45,6 +49,7 @@ import { ComicCategory } from './comics-categories/models/comic-category.models'
     UserModule,
     ComicsModule,
     CollectionsModule,
+    AuthorizationModule,
     CategoriesModule,
     AuthorsModule,
     PublishersModule,
@@ -53,6 +58,16 @@ import { ComicCategory } from './comics-categories/models/comic-category.models'
     AuthModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: AuthGuard,
+    },
+    {
+      provide: APP_GUARD,
+      useClass: RolesGuard,
+    },
+  ],
 })
 export class AppModule {}
