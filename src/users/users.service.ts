@@ -2,6 +2,7 @@ import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './models/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
+import { UpdateAuthorDto } from 'src/authors/dto/update-author.dto';
 
 @Injectable()
 export class UsersService {
@@ -11,16 +12,18 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
-    const { ...createUserDtoNoAuth } = createUserDto;
-
-    return await this.userModel.create<User>({ ...createUserDtoNoAuth });
+    return await this.userModel.create<User>(createUserDto);
   }
 
   findAll() {
     return this.userModel.findAll();
   }
 
-  async findOne(email: string): Promise<User | undefined> {
+  async findOne(id: number): Promise<User | undefined> {
+    return this.userModel.findByPk(id);
+  }
+
+  async findByEmail(email: string): Promise<User | undefined> {
     return this.userModel.findOne({
       where: {
         email,
@@ -28,11 +31,16 @@ export class UsersService {
     });
   }
 
-  update(id: number) {
-    return `This action updates a #${id} user`;
+  async update(id: number, updateUserDto: UpdateAuthorDto) {
+    const user = await this.userModel.findByPk(id);
+    return user.update(updateUserDto);
   }
 
   remove(id: number) {
-    return `This action removes a #${id} user`;
+    return this.userModel.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
