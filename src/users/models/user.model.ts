@@ -38,7 +38,7 @@ export class User extends Model<User> {
     type: DataType.ENUM,
     values: ['user', 'admin'],
     allowNull: false,
-    defaultValue: 'admin',
+    defaultValue: 'user',
   })
   role: RoleEnum;
 
