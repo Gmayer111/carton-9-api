@@ -3,9 +3,13 @@ import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 export class CreateAuthorDto {
   @IsNotEmpty()
   @IsString()
+  userName: string;
+
+  @IsOptional()
+  @IsString()
   firstName: string;
 
-  @IsNotEmpty()
+  @IsOptional()
   @IsString()
   lastName: string;
 

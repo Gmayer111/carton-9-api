@@ -8,8 +8,9 @@ module.exports = {
     (
       id int auto_increment
         primary key,
-      firstName    varchar(100) not null,
-      lastName     varchar(100) not null,
+      userName     varchar(100) not null,
+      firstName    varchar(100) null,
+      lastName     varchar(100) null,
       link         varchar(255) null,
       description  text         null,
       picture      varchar(255) null,
