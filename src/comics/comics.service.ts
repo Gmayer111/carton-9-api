@@ -3,6 +3,8 @@ import { CreateComicDto } from './dto/create-comic.dto';
 import { UpdateComicDto } from './dto/update-comic.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Comic } from './models/comic.models';
+import { Author } from 'src/authors/models/author.models';
+import { Category } from 'src/categories/models/category.models';
 
 @Injectable()
 export class ComicsService {
@@ -18,7 +20,12 @@ export class ComicsService {
     return await this.comicModel.findAll({
       include: [
         {
-          association: 'Author',
+          model: Author,
+          through: { attributes: [] },
+        },
+        {
+          model: Category,
+          through: { attributes: [] },
         },
       ],
     });
