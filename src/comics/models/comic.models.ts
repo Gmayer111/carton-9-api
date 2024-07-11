@@ -7,8 +7,10 @@ import {
   Table,
 } from 'sequelize-typescript';
 import { Author } from 'src/authors/models/author.models';
+import { Category } from 'src/categories/models/category.models';
 import { Collection } from 'src/collections/models/collection.models';
 import { ComicAuthor } from 'src/comics-authors/models/comic-author.model';
+import { ComicCategory } from 'src/comics-categories/models/comic-category.models';
 import { Publisher } from 'src/publishers/models/publisher.models';
 
 @Table
@@ -30,6 +32,9 @@ export class Comic extends Model<Comic> {
 
   @BelongsToMany(() => Author, () => ComicAuthor)
   Author: Author[];
+
+  @BelongsToMany(() => Category, () => ComicCategory)
+  Category: Category[];
 
   @ForeignKey(() => Collection)
   @Column({ allowNull: false })
