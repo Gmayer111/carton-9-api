@@ -26,8 +26,4 @@ export class CreateComicDto {
   @IsOptional()
   @IsNumber()
   tome: number;
-
-  @IsNotEmpty()
-  @IsNumber()
-  authorId: number[];
 }
