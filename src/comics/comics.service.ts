@@ -15,7 +15,13 @@ export class ComicsService {
   }
 
   async findAll() {
-    return await this.comicModel.findAll();
+    return await this.comicModel.findAll({
+      include: [
+        {
+          association: 'Author',
+        },
+      ],
+    });
   }
 
   async findOne(id: number) {

@@ -1,18 +1,13 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ComicsAuthorsService } from './comics-authors.service';
 import { CreateComicsAuthorDto } from './dto/create-comics-author.dto';
-import { UpdateComicsAuthorDto } from './dto/update-comics-author.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
+import { Roles } from 'src/authorization/roles.decorator';
 
 @ApiTags('Comics-authors')
+@ApiBearerAuth()
+@Roles(RoleEnum.admin)
 @Controller('comics-authors')
 export class ComicsAuthorsController {
   constructor(private readonly comicsAuthorsService: ComicsAuthorsService) {}
@@ -25,23 +20,5 @@ export class ComicsAuthorsController {
   @Get()
   findAll() {
     return this.comicsAuthorsService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.comicsAuthorsService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateComicsAuthorDto: UpdateComicsAuthorDto,
-  ) {
-    return this.comicsAuthorsService.update(+id, updateComicsAuthorDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.comicsAuthorsService.remove(+id);
   }
 }

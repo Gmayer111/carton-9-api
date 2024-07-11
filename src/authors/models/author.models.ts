@@ -1,4 +1,6 @@
-import { Column, Model, Table } from 'sequelize-typescript';
+import { BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
+import { ComicAuthor } from 'src/comics-authors/models/comic-author.model';
+import { Comic } from 'src/comics/models/comic.models';
 
 @Table
 export class Author extends Model<Author> {
@@ -19,4 +21,7 @@ export class Author extends Model<Author> {
 
   @Column({ allowNull: true })
   description: string;
+
+  @BelongsToMany(() => Comic, () => ComicAuthor)
+  Comic: Comic[];
 }
