@@ -8,5 +8,6 @@ import { ComicCategory } from './models/comic-category.models';
   imports: [SequelizeModule.forFeature([ComicCategory])],
   controllers: [ComicsCategoriesController],
   providers: [ComicsCategoriesService],
+  exports: [ComicsCategoriesService],
 })
 export class ComicsCategoriesModule {}
