@@ -1,26 +1,20 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComicsAuthorDto } from './dto/create-comics-author.dto';
-import { UpdateComicsAuthorDto } from './dto/update-comics-author.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { ComicAuthor } from './models/comic-author.model';
 
 @Injectable()
 export class ComicsAuthorsService {
-  create(createComicsAuthorDto: CreateComicsAuthorDto) {
-    return 'This action adds a new comicsAuthor';
+  constructor(
+    @InjectModel(ComicAuthor) private comicAuthorModel: typeof ComicAuthor,
+  ) {}
+  async create(createComicsAuthorDto: CreateComicsAuthorDto) {
+    return await this.comicAuthorModel.create<ComicAuthor>(
+      createComicsAuthorDto,
+    );
   }
 
-  findAll() {
-    return `This action returns all comicsAuthors`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} comicsAuthor`;
-  }
-
-  update(id: number, updateComicsAuthorDto: UpdateComicsAuthorDto) {
-    return `This action updates a #${id} comicsAuthor`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} comicsAuthor`;
+  async findAll() {
+    return await this.comicAuthorModel.findAll();
   }
 }
