@@ -8,10 +8,12 @@ describe('ComicsCategoriesController', () => {
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
       controllers: [ComicsCategoriesController],
-      providers: [ComicsCategoriesService],
+      providers: [{ provide: ComicsCategoriesService, useValue: jest.fn() }],
     }).compile();
 
-    controller = module.get<ComicsCategoriesController>(ComicsCategoriesController);
+    controller = module.get<ComicsCategoriesController>(
+      ComicsCategoriesController,
+    );
   });
 
   it('should be defined', () => {
