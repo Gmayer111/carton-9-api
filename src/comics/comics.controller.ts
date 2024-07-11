@@ -16,7 +16,7 @@ import { RoleEnum } from 'src/authorization/enums/role.enum';
 
 @ApiTags('Comics')
 @ApiBearerAuth()
-@Roles(RoleEnum.admin)
+@Roles(RoleEnum.admin, RoleEnum.user)
 @Controller('comics')
 export class ComicsController {
   constructor(private readonly comicsService: ComicsService) {}
@@ -27,13 +27,11 @@ export class ComicsController {
   }
 
   @Get()
-  @Roles(RoleEnum.admin, RoleEnum.user)
   findAll() {
     return this.comicsService.findAll();
   }
 
   @Get(':id')
-  @Roles(RoleEnum.admin, RoleEnum.user)
   findOne(@Param('id') id: string) {
     return this.comicsService.findOne(+id);
   }
