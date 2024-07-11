@@ -10,9 +10,13 @@ import {
 import { CategoriesService } from './categories.service';
 import { CreateCategoryDto } from './dto/create-category.dto';
 import { UpdateCategoryDto } from './dto/update-category.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
+import { Roles } from 'src/authorization/roles.decorator';
 
 @ApiTags('Categories')
+@ApiBearerAuth()
+@Roles(RoleEnum.admin, RoleEnum.user)
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
