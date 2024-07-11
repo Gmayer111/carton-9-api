@@ -1,18 +1,13 @@
-import {
-  Controller,
-  Get,
-  Post,
-  Body,
-  Patch,
-  Param,
-  Delete,
-} from '@nestjs/common';
+import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ComicsCategoriesService } from './comics-categories.service';
 import { CreateComicsCategoryDto } from './dto/create-comics-category.dto';
-import { UpdateComicsCategoryDto } from './dto/update-comics-category.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/authorization/roles.decorator';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
 
 @ApiTags('Comics-categories')
+@ApiBearerAuth()
+@Roles(RoleEnum.admin, RoleEnum.user)
 @Controller('comics-categories')
 export class ComicsCategoriesController {
   constructor(
@@ -27,23 +22,5 @@ export class ComicsCategoriesController {
   @Get()
   findAll() {
     return this.comicsCategoriesService.findAll();
-  }
-
-  @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.comicsCategoriesService.findOne(+id);
-  }
-
-  @Patch(':id')
-  update(
-    @Param('id') id: string,
-    @Body() updateComicsCategoryDto: UpdateComicsCategoryDto,
-  ) {
-    return this.comicsCategoriesService.update(+id, updateComicsCategoryDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.comicsCategoriesService.remove(+id);
   }
 }

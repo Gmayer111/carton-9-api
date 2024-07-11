@@ -1,26 +1,21 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComicsCategoryDto } from './dto/create-comics-category.dto';
-import { UpdateComicsCategoryDto } from './dto/update-comics-category.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { ComicCategory } from './models/comic-category.models';
 
 @Injectable()
 export class ComicsCategoriesService {
+  constructor(
+    @InjectModel(ComicCategory)
+    private comicCategoryModel: typeof ComicCategory,
+  ) {}
   create(createComicsCategoryDto: CreateComicsCategoryDto) {
-    return 'This action adds a new comicsCategory';
+    return this.comicCategoryModel.create<ComicCategory>(
+      createComicsCategoryDto,
+    );
   }
 
   findAll() {
-    return `This action returns all comicsCategories`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} comicsCategory`;
-  }
-
-  update(id: number, updateComicsCategoryDto: UpdateComicsCategoryDto) {
-    return `This action updates a #${id} comicsCategory`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} comicsCategory`;
+    return this.comicCategoryModel.findAll();
   }
 }
