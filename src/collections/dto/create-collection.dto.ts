@@ -1,7 +1,7 @@
-import { IsNotEmpty, IsNumber, IsOptional, IsString } from 'class-validator';
+import { IsDefined, IsNumber, IsOptional, IsString } from 'class-validator';
 
 export class CreateCollectionDto {
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   name: string;
 
