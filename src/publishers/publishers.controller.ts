@@ -10,9 +10,13 @@ import {
 import { PublishersService } from './publishers.service';
 import { CreatePublisherDto } from './dto/create-publisher.dto';
 import { UpdatePublisherDto } from './dto/update-publisher.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/authorization/roles.decorator';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
 
 @ApiTags('Publishers')
+@ApiBearerAuth()
+@Roles(RoleEnum.admin, RoleEnum.user)
 @Controller('publishers')
 export class PublishersController {
   constructor(private readonly publishersService: PublishersService) {}
