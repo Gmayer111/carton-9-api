@@ -10,9 +10,13 @@ import {
 import { CollectionsService } from './collections.service';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { Roles } from 'src/authorization/roles.decorator';
+import { RoleEnum } from 'src/authorization/enums/role.enum';
 
 @ApiTags('Collections')
+@ApiBearerAuth()
+@Roles(RoleEnum.admin, RoleEnum.user)
 @Controller('collections')
 export class CollectionsController {
   constructor(private readonly collectionsService: CollectionsService) {}

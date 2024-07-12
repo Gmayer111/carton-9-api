@@ -1,26 +1,36 @@
 import { Injectable } from '@nestjs/common';
 import { CreateCollectionDto } from './dto/create-collection.dto';
 import { UpdateCollectionDto } from './dto/update-collection.dto';
+import { InjectModel } from '@nestjs/sequelize';
+import { Collection } from './models/collection.models';
 
 @Injectable()
 export class CollectionsService {
-  create(createCollectionDto: CreateCollectionDto) {
-    return 'This action adds a new collection';
+  constructor(
+    @InjectModel(Collection) private collectionModel: typeof Collection,
+  ) {}
+  async create(createCollectionDto: CreateCollectionDto) {
+    return await this.collectionModel.create(createCollectionDto);
   }
 
-  findAll() {
-    return `This action returns all collections`;
+  async findAll() {
+    return await this.collectionModel.findAll();
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} collection`;
+  async findOne(id: number) {
+    return await this.collectionModel.findByPk(id);
   }
 
-  update(id: number, updateCollectionDto: UpdateCollectionDto) {
-    return `This action updates a #${id} collection`;
+  async update(id: number, updateCollectionDto: UpdateCollectionDto) {
+    const collection = await this.collectionModel.findByPk(id);
+    return collection.update(updateCollectionDto);
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} collection`;
+  async remove(id: number) {
+    return await this.collectionModel.destroy({
+      where: {
+        id,
+      },
+    });
   }
 }
