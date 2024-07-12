@@ -8,5 +8,6 @@ import { Publisher } from './models/publisher.models';
   imports: [SequelizeModule.forFeature([Publisher])],
   controllers: [PublishersController],
   providers: [PublishersService],
+  exports: [PublishersService],
 })
 export class PublishersModule {}

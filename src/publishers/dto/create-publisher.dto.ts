@@ -1,27 +1,27 @@
-import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsDefined, IsOptional, IsString } from 'class-validator';
 
 export class CreatePublisherDto {
   @IsOptional()
   @IsString()
   picture: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   name: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   address: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   zipcode: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   city: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   country: string;
 }
