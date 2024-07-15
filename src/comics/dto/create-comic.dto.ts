@@ -1,29 +1,37 @@
 import {
   IsDate,
-  IsNotEmpty,
+  IsDefined,
   IsNumber,
   IsOptional,
   IsString,
 } from 'class-validator';
 
 export class CreateComicDto {
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   title: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   picture: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsString()
   description: string;
 
-  @IsNotEmpty()
+  @IsDefined()
   @IsDate()
   releaseDate: Date;
 
   @IsOptional()
   @IsNumber()
   tome: number;
+
+  @IsDefined()
+  @IsNumber()
+  collectionId: number;
+
+  @IsDefined()
+  @IsNumber()
+  publisherId: number;
 }
