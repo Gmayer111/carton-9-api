@@ -2,6 +2,8 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { ComicsService } from './comics.service';
 import { Comic } from './models/comic.models';
 import { getModelToken } from '@nestjs/sequelize';
+import { Sequelize } from 'sequelize-typescript';
+import { CollectionsService } from '../collections/collections.service';
 
 describe('ComicsService', () => {
   let service: ComicsService;
@@ -12,6 +14,12 @@ describe('ComicsService', () => {
       providers: [
         ComicsService,
         {
+          provide: CollectionsService,
+          useValue: {
+            updateTotalColumn: jest.fn(),
+          },
+        },
+        {
           provide: getModelToken(Comic),
           useValue: {
             create: jest.fn(),
@@ -19,6 +27,14 @@ describe('ComicsService', () => {
             findOne: jest.fn(),
             update: jest.fn(),
             destroy: jest.fn(),
+          },
+        },
+        {
+          provide: Sequelize,
+          useValue: {
+            query: jest.fn(() => {
+              return [{ total: 1 }];
+            }),
           },
         },
       ],

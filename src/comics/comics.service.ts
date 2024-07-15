@@ -5,15 +5,39 @@ import { InjectModel } from '@nestjs/sequelize';
 import { Comic } from './models/comic.models';
 import { Author } from 'src/authors/models/author.models';
 import { Category } from 'src/categories/models/category.models';
+import { Sequelize } from 'sequelize-typescript';
+import { QueryTypes } from 'sequelize';
+import { CollectionsService } from 'src/collections/collections.service';
 
 @Injectable()
 export class ComicsService {
   constructor(
+    private sequelize: Sequelize,
+    private collectionService: CollectionsService,
     @InjectModel(Comic)
     private comicModel: typeof Comic,
   ) {}
   async create(createComicDto: CreateComicDto) {
-    return await this.comicModel.create<Comic>(createComicDto);
+    const comic = await this.comicModel.create<Comic>(createComicDto);
+
+    const sqlCountQuery = `
+      SELECT C.total FROM Collections C WHERE C.id = :collectionId
+      `;
+
+    const collectionCount: { total: number }[] = await this.sequelize.query(
+      sqlCountQuery,
+      {
+        replacements: { collectionId: createComicDto.collectionId },
+        type: QueryTypes.SELECT,
+      },
+    );
+
+    await this.collectionService.updateTotalColumn(
+      createComicDto.collectionId,
+      collectionCount[0].total + 1,
+    );
+
+    return comic;
   }
 
   async findAll() {
