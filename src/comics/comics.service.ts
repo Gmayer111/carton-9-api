@@ -51,6 +51,12 @@ export class ComicsService {
           model: Category,
           through: { attributes: [] },
         },
+        {
+          association: 'Publisher',
+        },
+        {
+          association: 'Collection',
+        },
       ],
     });
   }
@@ -58,6 +64,22 @@ export class ComicsService {
   async findOne(id: number) {
     const comic = await this.comicModel.findOne({
       where: { id },
+      include: [
+        {
+          model: Author,
+          through: { attributes: [] },
+        },
+        {
+          model: Category,
+          through: { attributes: [] },
+        },
+        {
+          association: 'Publisher',
+        },
+        {
+          association: 'Collection',
+        },
+      ],
     });
     return comic;
   }
