@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.3.0](https://github.com/Gmayer111/passion-bd-api/compare/v1.2.0...v1.3.0) (2024-07-15)
+
+
+### Features
+
+* adding USER CRUD ([#16](https://github.com/Gmayer111/passion-bd-api/issues/16)) ([31018f6](https://github.com/Gmayer111/passion-bd-api/commit/31018f6860072609a442fcb78fe6ef2a213a6bb7))
+* create auth tests ([#13](https://github.com/Gmayer111/passion-bd-api/issues/13)) ([78e2845](https://github.com/Gmayer111/passion-bd-api/commit/78e2845b39eb6ef7e3ba167fa3b8ed0eeaf43659))
+* create author crud ([#18](https://github.com/Gmayer111/passion-bd-api/issues/18)) ([763de28](https://github.com/Gmayer111/passion-bd-api/commit/763de2897ce2b064bd9e529c00d6d09097e7d1bc))
+* create categories CRUD ([#19](https://github.com/Gmayer111/passion-bd-api/issues/19)) ([075b498](https://github.com/Gmayer111/passion-bd-api/commit/075b498535cdef62b5315ab85981445ad5ad5c95))
+* create collections CRUD ([#21](https://github.com/Gmayer111/passion-bd-api/issues/21)) ([83da712](https://github.com/Gmayer111/passion-bd-api/commit/83da712bd210d7aaa2ea18ba47020fc0f73d4f00))
+* create comic CRUD with tests ([#14](https://github.com/Gmayer111/passion-bd-api/issues/14)) ([c9ba2c1](https://github.com/Gmayer111/passion-bd-api/commit/c9ba2c180b385675572ce5c2f804cbce26841065))
+* create comics-authors DTO ([#17](https://github.com/Gmayer111/passion-bd-api/issues/17)) ([4736e13](https://github.com/Gmayer111/passion-bd-api/commit/4736e13479c23e02324cdb269bfffcd88a8a277a))
+* create comics-categories crud ([#20](https://github.com/Gmayer111/passion-bd-api/issues/20)) ([b1dce48](https://github.com/Gmayer111/passion-bd-api/commit/b1dce48a829e149cbe6ca6b67a73ef6d19b0f7df))
+* create publishers crud ([#22](https://github.com/Gmayer111/passion-bd-api/issues/22)) ([901e561](https://github.com/Gmayer111/passion-bd-api/commit/901e561d17103e1c903a7c72f68a42f756045c42))
+* create total count collections method ([#23](https://github.com/Gmayer111/passion-bd-api/issues/23)) ([1185f60](https://github.com/Gmayer111/passion-bd-api/commit/1185f6012b4cb5c1aea1588fd204d468c8b0de0d))
+* create user auth ([#8](https://github.com/Gmayer111/passion-bd-api/issues/8)) ([bb4790b](https://github.com/Gmayer111/passion-bd-api/commit/bb4790b960b3012456c8fd8e7682c3060b912140))
+* resolve issue roles guard ([#15](https://github.com/Gmayer111/passion-bd-api/issues/15)) ([900a14a](https://github.com/Gmayer111/passion-bd-api/commit/900a14a37c6d4d95cf25216af1f4345913e8d32e))
+* update readme ([#24](https://github.com/Gmayer111/passion-bd-api/issues/24)) ([07dba5c](https://github.com/Gmayer111/passion-bd-api/commit/07dba5cddd08886d5b36ec53c327cdd84dd8ebd3))
+
 ## [1.2.0](https://github.com/Gmayer111/passion-bd-api/compare/v1.1.1...v1.2.0) (2024-05-06)
 
 
