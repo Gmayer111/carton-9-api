@@ -21,6 +21,18 @@ export class CollectionsService {
     return await this.collectionModel.findByPk(id);
   }
 
+  async updateTotalColumn(id: number, total: number) {
+    const collection = await this.collectionModel.findByPk(id);
+
+    if (!collection) {
+      return false;
+    }
+
+    return collection.update({
+      total: total,
+    });
+  }
+
   async update(id: number, updateCollectionDto: UpdateCollectionDto) {
     const collection = await this.collectionModel.findByPk(id);
     return collection.update(updateCollectionDto);
