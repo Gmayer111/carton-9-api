@@ -1,6 +1,6 @@
 ### API Passion BD
 
-This API provides passion-bd data
+This API provides LCBD data
 
 ## Table of contents
 
