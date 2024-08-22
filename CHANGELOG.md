@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.0](https://github.com/Gmayer111/bd-api/compare/v1.3.0...v1.4.0) (2024-08-22)
+
+
+### Features
+
+* add cors and users handle errors ([#25](https://github.com/Gmayer111/bd-api/issues/25)) ([47e4b04](https://github.com/Gmayer111/bd-api/commit/47e4b04af1d9bae97cf971b141a1793eb67f2016))
+
 ## [1.3.0](https://github.com/Gmayer111/passion-bd-api/compare/v1.2.0...v1.3.0) (2024-07-15)
 
 
