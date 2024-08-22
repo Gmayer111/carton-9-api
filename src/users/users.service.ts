@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ConflictException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './models/user.model';
 import { CreateUserDto } from './dto/create-user.dto';
@@ -12,6 +12,12 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<User> {
+    const emailExist = await this.findByEmail(createUserDto.email);
+
+    if (emailExist) {
+      throw new ConflictException(HttpStatus.CONFLICT, "L'email existe déjà");
+    }
+
     return await this.userModel.create<User>(createUserDto);
   }
 

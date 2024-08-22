@@ -9,7 +9,7 @@ import {
 } from '@nestjs/common';
 import { CreateUserDto } from './dto/create-user.dto';
 import { UsersService } from './users.service';
-import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './models/user.model';
 import { Public } from 'src/auth/public.decorator';
 import { Roles } from 'src/authorization/roles.decorator';
@@ -23,6 +23,9 @@ export class UserController {
   constructor(private readonly usersService: UsersService) {}
 
   @Post()
+  @ApiResponse({
+    status: 401,
+  })
   @Public()
   async createUser(@Body() createUserDto: CreateUserDto): Promise<User> {
     const user = await this.usersService.create(createUserDto);
