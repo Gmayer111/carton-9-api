@@ -3,9 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { ComicsService } from './comics.service';
 import { CreateComicDto } from './dto/create-comic.dto';
@@ -36,7 +36,7 @@ export class ComicsController {
     return this.comicsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
   update(@Param('id') id: string, @Body() updateComicDto: UpdateComicDto) {
     return this.comicsService.update(+id, updateComicDto);
   }

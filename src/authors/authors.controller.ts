@@ -3,9 +3,9 @@ import {
   Get,
   Post,
   Body,
-  Patch,
   Param,
   Delete,
+  Put,
 } from '@nestjs/common';
 import { AuthorsService } from './authors.service';
 import { CreateAuthorDto } from './dto/create-author.dto';
@@ -39,7 +39,8 @@ export class AuthorsController {
     return this.authorsService.findOne(+id);
   }
 
-  @Patch(':id')
+  @Put(':id')
+  @Roles(RoleEnum.admin, RoleEnum.user)
   update(@Param('id') id: string, @Body() updateAuthorDto: UpdateAuthorDto) {
     return this.authorsService.update(+id, updateAuthorDto);
   }
