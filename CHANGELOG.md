@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.1](https://github.com/Gmayer111/carton9-api/compare/v1.4.0...v1.4.1) (2024-09-26)
+
+
+### Bug Fixes
+
+* replace PATCH by PUT method ([#27](https://github.com/Gmayer111/carton9-api/issues/27)) ([72ab6c9](https://github.com/Gmayer111/carton9-api/commit/72ab6c93b9d86b6e77adc36abf5df9208e6b5b79))
+* replace PATCH by PUT method for all models ([#29](https://github.com/Gmayer111/carton9-api/issues/29)) ([98c5668](https://github.com/Gmayer111/carton9-api/commit/98c5668de444a3e5785588493b9deabe18a42cde))
+
 ## [1.4.0](https://github.com/Gmayer111/bd-api/compare/v1.3.0...v1.4.0) (2024-08-22)
 
 
