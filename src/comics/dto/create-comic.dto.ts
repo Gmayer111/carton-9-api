@@ -7,7 +7,7 @@ import {
   IsString,
   ValidateNested,
 } from 'class-validator';
-import { CreateComicsAuthorDto } from '../comics-authors/dto/create-comics-author.dto';
+import { CreateUpdateComicsAuthorDto } from '../comics-authors/dto/create-update-comics-author.dto';
 import { Type } from 'class-transformer';
 
 export class CreateComicDto {
@@ -42,6 +42,6 @@ export class CreateComicDto {
   @IsOptional()
   @IsArray()
   @ValidateNested()
-  @Type(() => CreateComicsAuthorDto)
-  Authors: CreateComicsAuthorDto[];
+  @Type(() => CreateUpdateComicsAuthorDto)
+  Authors: CreateUpdateComicsAuthorDto[];
 }
