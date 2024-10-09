@@ -31,15 +31,20 @@ export class ComicsController {
     return this.comicsService.findAll();
   }
 
+  @Get('comic-authors-categories')
+  getAllComicAuthorsCategories() {
+    return this.comicsService.getAllComicAuthorsCategories();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.comicsService.findOne(+id);
   }
 
-  @Put(':id')
-  update(@Param('id') id: string, @Body() updateComicDto: UpdateComicDto) {
-    return this.comicsService.update(+id, updateComicDto);
-  }
+  // @Put(':id')
+  // update(@Param('id') id: string, @Body() updateComicDto: UpdateComicDto) {
+  //   return this.comicsService.update(+id, updateComicDto);
+  // }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

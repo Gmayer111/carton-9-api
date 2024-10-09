@@ -1,6 +1,5 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComicDto } from './dto/create-comic.dto';
-import { UpdateComicDto } from './dto/update-comic.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Comic } from './models/comic.models';
 import { Author } from 'src/authors/models/author.models';
@@ -17,12 +16,13 @@ export class ComicsService {
     @InjectModel(Comic)
     private comicModel: typeof Comic,
   ) {}
+
   async create(createComicDto: CreateComicDto) {
-    const comic = await this.comicModel.create<Comic>(createComicDto);
+    const comic = await this.comicModel.create({ ...createComicDto });
 
     const sqlCountQuery = `
-      SELECT C.total FROM Collections C WHERE C.id = :collectionId
-      `;
+    SELECT C.total FROM Collections C WHERE C.id = :collectionId
+    `;
 
     const collectionCount: { total: number }[] = await this.sequelize.query(
       sqlCountQuery,
@@ -84,11 +84,22 @@ export class ComicsService {
     return comic;
   }
 
-  async update(id: number, updateComicDto: UpdateComicDto) {
-    const comic = await this.comicModel.findOne({
-      where: { id },
+  async getAllComicAuthorsCategories() {
+    const sqlQuery = `
+    SELECT id, name, 'collection' as recordtype FROM Collections
+    UNION
+    SELECT id, name, 'publisher' as recordtype FROM Publishers
+    UNION
+    SELECT id, userName, 'author' as recordtype FROM Authors
+    UNION
+    SELECT id, label, 'category' as recordtype FROM Categories LIMIT 100
+    `;
+
+    const selectItemsQuery = await this.sequelize.query(sqlQuery, {
+      type: QueryTypes.SELECT,
     });
-    return comic.update(updateComicDto);
+
+    return selectItemsQuery;
   }
 
   async remove(id: number) {
