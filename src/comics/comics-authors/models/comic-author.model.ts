@@ -9,7 +9,7 @@ import { Author } from 'src/authors/models/author.models';
 import { Comic } from 'src/comics/models/comic.models';
 
 @Table
-export class ComicAuthor extends Model<ComicAuthor> {
+export class ComicAuthor extends Model {
   @ForeignKey(() => Comic)
   @Column
   comicId: number;

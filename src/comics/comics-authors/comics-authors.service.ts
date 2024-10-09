@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateComicsAuthorDto } from './dto/create-comics-author.dto';
+import { CreateUpdateComicsAuthorDto } from './dto/create-update-comics-author.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { ComicAuthor } from './models/comic-author.model';
 
@@ -8,10 +8,10 @@ export class ComicsAuthorsService {
   constructor(
     @InjectModel(ComicAuthor) private comicAuthorModel: typeof ComicAuthor,
   ) {}
-  async create(createComicsAuthorDto: CreateComicsAuthorDto) {
-    return await this.comicAuthorModel.create<ComicAuthor>(
-      createComicsAuthorDto,
-    );
+  async create(createUpdateComicsAuthorDto: CreateUpdateComicsAuthorDto) {
+    return await this.comicAuthorModel.create({
+      ...createUpdateComicsAuthorDto,
+    });
   }
 
   async findAll() {

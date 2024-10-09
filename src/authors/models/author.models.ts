@@ -1,5 +1,5 @@
 import { BelongsToMany, Column, Model, Table } from 'sequelize-typescript';
-import { ComicAuthor } from 'src/comics-authors/models/comic-author.model';
+import { ComicAuthor } from 'src/comics/comics-authors/models/comic-author.model';
 import { Comic } from 'src/comics/models/comic.models';
 
 @Table
