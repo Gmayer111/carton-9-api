@@ -41,10 +41,10 @@ export class ComicsController {
     return this.comicsService.findOne(+id);
   }
 
-  // @Put(':id')
-  // update(@Param('id') id: string, @Body() updateComicDto: UpdateComicDto) {
-  //   return this.comicsService.update(+id, updateComicDto);
-  // }
+  @Put(':id')
+  update(@Param('id') id: string, @Body() updateComicDto: UpdateComicDto) {
+    return this.comicsService.update(+id, updateComicDto);
+  }
 
   @Delete(':id')
   remove(@Param('id') id: string) {

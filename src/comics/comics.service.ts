@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { CreateComicDto } from './dto/create-comic.dto';
+import { UpdateComicDto } from './dto/update-comic.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { Comic } from './models/comic.models';
 import { Author } from 'src/authors/models/author.models';
@@ -7,6 +8,7 @@ import { Category } from 'src/categories/models/category.models';
 import { Sequelize } from 'sequelize-typescript';
 import { QueryTypes } from 'sequelize';
 import { CollectionsService } from 'src/collections/collections.service';
+import { CreateUpdateComicsAuthorDto } from './comics-authors/dto/create-update-comics-author.dto';
 
 @Injectable()
 export class ComicsService {
@@ -37,7 +39,29 @@ export class ComicsService {
       collectionCount[0].total + 1,
     );
 
-    return comic;
+    return this.createUpdateComicAuthors(comic.id, createComicDto.Authors);
+  }
+
+  async update(id: number, updateComicDto: UpdateComicDto) {
+    const comic = await this.comicModel.findOne({
+      where: { id },
+    });
+
+    this.createUpdateComicAuthors(comic.id, updateComicDto.Authors);
+    return comic.update(updateComicDto);
+  }
+
+  async createUpdateComicAuthors(
+    comicId: number,
+    createUpdateComicsAuthorsDto: CreateUpdateComicsAuthorDto[],
+  ) {
+    if (createUpdateComicsAuthorsDto.length) {
+      const comic = await this.findOne(comicId);
+      await comic.$set(
+        'Authors',
+        createUpdateComicsAuthorsDto.map((item) => item.authorId),
+      );
+    }
   }
 
   async findAll() {
