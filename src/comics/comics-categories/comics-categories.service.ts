@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { CreateComicsCategoryDto } from './dto/create-comics-category.dto';
+import { CreateUpdateComicsCategoryDto } from './dto/create-update-comics-category.dto';
 import { InjectModel } from '@nestjs/sequelize';
 import { ComicCategory } from './models/comic-category.models';
 
@@ -9,9 +9,9 @@ export class ComicsCategoriesService {
     @InjectModel(ComicCategory)
     private comicCategoryModel: typeof ComicCategory,
   ) {}
-  create(createComicsCategoryDto: CreateComicsCategoryDto) {
+  create(createUpdateComicsCategoryDto: CreateUpdateComicsCategoryDto) {
     return this.comicCategoryModel.create<ComicCategory>(
-      createComicsCategoryDto,
+      createUpdateComicsCategoryDto,
     );
   }
 

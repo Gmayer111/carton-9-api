@@ -1,6 +1,6 @@
 import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class CreateComicsCategoryDto {
+export class CreateUpdateComicsCategoryDto {
   @IsNotEmpty()
   @IsNumber()
   comicId: number;
