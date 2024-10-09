@@ -1,6 +1,6 @@
 import { Controller, Get, Post, Body } from '@nestjs/common';
 import { ComicsAuthorsService } from './comics-authors.service';
-import { CreateComicsAuthorDto } from './dto/create-comics-author.dto';
+import { CreateUpdateComicsAuthorDto } from './dto/create-update-comics-author.dto';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { RoleEnum } from 'src/authorization/enums/role.enum';
 import { Roles } from 'src/authorization/roles.decorator';
@@ -13,8 +13,8 @@ export class ComicsAuthorsController {
   constructor(private readonly comicsAuthorsService: ComicsAuthorsService) {}
 
   @Post()
-  create(@Body() createComicsAuthorDto: CreateComicsAuthorDto) {
-    return this.comicsAuthorsService.create(createComicsAuthorDto);
+  create(@Body() createUpdateComicsAuthorDto: CreateUpdateComicsAuthorDto) {
+    return this.comicsAuthorsService.create(createUpdateComicsAuthorDto);
   }
 
   @Get()

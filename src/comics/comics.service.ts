@@ -8,6 +8,7 @@ import { Category } from 'src/categories/models/category.models';
 import { Sequelize } from 'sequelize-typescript';
 import { QueryTypes } from 'sequelize';
 import { CollectionsService } from 'src/collections/collections.service';
+import { CreateUpdateComicsAuthorDto } from './comics-authors/dto/create-update-comics-author.dto';
 
 @Injectable()
 export class ComicsService {
@@ -17,12 +18,13 @@ export class ComicsService {
     @InjectModel(Comic)
     private comicModel: typeof Comic,
   ) {}
+
   async create(createComicDto: CreateComicDto) {
-    const comic = await this.comicModel.create<Comic>(createComicDto);
+    const comic = await this.comicModel.create({ ...createComicDto });
 
     const sqlCountQuery = `
-      SELECT C.total FROM Collections C WHERE C.id = :collectionId
-      `;
+    SELECT C.total FROM Collections C WHERE C.id = :collectionId
+    `;
 
     const collectionCount: { total: number }[] = await this.sequelize.query(
       sqlCountQuery,
@@ -37,7 +39,29 @@ export class ComicsService {
       collectionCount[0].total + 1,
     );
 
-    return comic;
+    return this.createUpdateComicAuthors(comic.id, createComicDto.Authors);
+  }
+
+  async update(id: number, updateComicDto: UpdateComicDto) {
+    const comic = await this.comicModel.findOne({
+      where: { id },
+    });
+
+    this.createUpdateComicAuthors(comic.id, updateComicDto.Authors);
+    return comic.update(updateComicDto);
+  }
+
+  async createUpdateComicAuthors(
+    comicId: number,
+    createUpdateComicsAuthorsDto: CreateUpdateComicsAuthorDto[],
+  ) {
+    if (createUpdateComicsAuthorsDto.length) {
+      const comic = await this.findOne(comicId);
+      await comic.$set(
+        'Authors',
+        createUpdateComicsAuthorsDto.map((item) => item.authorId),
+      );
+    }
   }
 
   async findAll() {
@@ -84,11 +108,22 @@ export class ComicsService {
     return comic;
   }
 
-  async update(id: number, updateComicDto: UpdateComicDto) {
-    const comic = await this.comicModel.findOne({
-      where: { id },
+  async getAllComicAuthorsCategories() {
+    const sqlQuery = `
+    SELECT id, name, 'collection' as recordtype FROM Collections
+    UNION
+    SELECT id, name, 'publisher' as recordtype FROM Publishers
+    UNION
+    SELECT id, userName, 'author' as recordtype FROM Authors
+    UNION
+    SELECT id, label, 'category' as recordtype FROM Categories LIMIT 100
+    `;
+
+    const selectItemsQuery = await this.sequelize.query(sqlQuery, {
+      type: QueryTypes.SELECT,
     });
-    return comic.update(updateComicDto);
+
+    return selectItemsQuery;
   }
 
   async remove(id: number) {

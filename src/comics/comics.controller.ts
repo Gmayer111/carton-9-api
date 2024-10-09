@@ -31,6 +31,11 @@ export class ComicsController {
     return this.comicsService.findAll();
   }
 
+  @Get('comic-authors-categories')
+  getAllComicAuthorsCategories() {
+    return this.comicsService.getAllComicAuthorsCategories();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.comicsService.findOne(+id);

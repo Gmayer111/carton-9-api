@@ -9,10 +9,10 @@ module.exports = {
       id int auto_increment
         primary key,
       title          varchar(255) not null,
-      description    text         not null,
       releaseDate    varchar(255) not null,
-      picture        varchar(255) not null,
-      tome           int not null null,
+      description    text         null,
+      tome           int          null,
+      picture        varchar(255) null,
       collectionId   int not null,
       publisherId    int not null,
       createdAt      datetime     not null,
@@ -25,6 +25,10 @@ module.exports = {
             on update cascade on delete cascade
     );
     `);
+
+    await queryInterface.sequelize.query(
+      `alter table Comics modify description null;`,
+    );
   },
 
   down: async (queryInterface) => {

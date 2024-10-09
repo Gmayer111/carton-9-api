@@ -1,11 +1,11 @@
 import { IsNotEmpty, IsNumber } from 'class-validator';
 
-export class CreateComicsAuthorDto {
-  @IsNumber()
+export class CreateUpdateComicsAuthorDto {
   @IsNotEmpty()
+  @IsNumber()
   comicId: number;
 
-  @IsNumber()
   @IsNotEmpty()
+  @IsNumber()
   authorId: number;
 }

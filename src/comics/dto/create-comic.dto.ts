@@ -1,10 +1,14 @@
 import {
+  IsArray,
   IsDate,
   IsDefined,
   IsNumber,
   IsOptional,
   IsString,
+  ValidateNested,
 } from 'class-validator';
+import { CreateUpdateComicsAuthorDto } from '../comics-authors/dto/create-update-comics-author.dto';
+import { Type } from 'class-transformer';
 
 export class CreateComicDto {
   @IsDefined()
@@ -12,20 +16,20 @@ export class CreateComicDto {
   title: string;
 
   @IsDefined()
-  @IsString()
-  picture: string;
-
-  @IsDefined()
-  @IsString()
-  description: string;
-
-  @IsDefined()
   @IsDate()
   releaseDate: Date;
 
   @IsOptional()
+  @IsString()
+  description: string;
+
+  @IsOptional()
   @IsNumber()
   tome: number;
+
+  @IsOptional()
+  @IsString()
+  picture: string;
 
   @IsDefined()
   @IsNumber()
@@ -34,4 +38,10 @@ export class CreateComicDto {
   @IsDefined()
   @IsNumber()
   publisherId: number;
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreateUpdateComicsAuthorDto)
+  Authors: CreateUpdateComicsAuthorDto[];
 }
