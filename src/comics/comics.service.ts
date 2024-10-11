@@ -9,6 +9,7 @@ import { Sequelize } from 'sequelize-typescript';
 import { QueryTypes } from 'sequelize';
 import { CollectionsService } from 'src/collections/collections.service';
 import { CreateUpdateComicsAuthorDto } from './comics-authors/dto/create-update-comics-author.dto';
+import { CreateUpdateComicsCategoryDto } from './comics-categories/dto/create-update-comics-category.dto';
 
 @Injectable()
 export class ComicsService {
@@ -43,11 +44,17 @@ export class ComicsService {
   }
 
   async update(id: number, updateComicDto: UpdateComicDto) {
+    console.log(
+      '🚀 ~ ComicsService ~ update ~ updateComicDto:',
+      updateComicDto,
+    );
+    console.log('🚀 ~ ComicsService ~ update ~ id:', id);
     const comic = await this.comicModel.findOne({
       where: { id },
     });
 
     this.createUpdateComicAuthors(comic.id, updateComicDto.Authors);
+    this.createUpdateComicCategories(comic.id, updateComicDto.Categories);
     return comic.update(updateComicDto);
   }
 
@@ -60,6 +67,19 @@ export class ComicsService {
       await comic.$set(
         'Authors',
         createUpdateComicsAuthorsDto.map((item) => item.authorId),
+      );
+    }
+  }
+
+  async createUpdateComicCategories(
+    comicId: number,
+    createUpdateComicsCategoriesDto: CreateUpdateComicsCategoryDto[],
+  ) {
+    if (createUpdateComicsCategoriesDto.length) {
+      const comic = await this.findOne(comicId);
+      await comic.$set(
+        'Categories',
+        createUpdateComicsCategoriesDto.map((item) => item.categoryId),
       );
     }
   }
@@ -108,15 +128,15 @@ export class ComicsService {
     return comic;
   }
 
-  async getAllComicAuthorsCategories() {
+  async getAllComicAssociations() {
     const sqlQuery = `
-    SELECT id, name, 'collection' as recordtype FROM Collections
+    SELECT id, name as comicAssociationsName, 'collection' as comicAssociationsRecordtype FROM Collections
     UNION
-    SELECT id, name, 'publisher' as recordtype FROM Publishers
+    SELECT id, name as comicAssociationsName, 'publisher' as comicAssociationsRecordtype FROM Publishers
     UNION
-    SELECT id, userName, 'author' as recordtype FROM Authors
+    SELECT id, userName as comicAssociationsName, 'author' as comicAssociationsRecordtype FROM Authors
     UNION
-    SELECT id, label, 'category' as recordtype FROM Categories LIMIT 100
+    SELECT id, label as comicAssociationsName, 'category' as comicAssociationsRecordtype FROM Categories LIMIT 100
     `;
 
     const selectItemsQuery = await this.sequelize.query(sqlQuery, {
