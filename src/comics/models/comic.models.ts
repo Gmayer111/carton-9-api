@@ -10,7 +10,7 @@ import { Author } from 'src/authors/models/author.models';
 import { Category } from 'src/categories/models/category.models';
 import { Collection } from 'src/collections/models/collection.models';
 import { ComicAuthor } from 'src/comics/comics-authors/models/comic-author.model';
-import { ComicCategory } from 'src/comics-categories/models/comic-category.models';
+import { ComicCategory } from 'src/comics/comics-categories/models/comic-category.models';
 import { Publisher } from 'src/publishers/models/publisher.models';
 
 @Table
@@ -34,7 +34,7 @@ export class Comic extends Model {
   Authors: Author[];
 
   @BelongsToMany(() => Category, () => ComicCategory)
-  Category: Category[];
+  Categories: Category[];
 
   @ForeignKey(() => Collection)
   @Column({ allowNull: false })
