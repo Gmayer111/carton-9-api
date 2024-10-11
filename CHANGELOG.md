@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.5.0](https://github.com/Gmayer111/carton9-api/compare/v1.4.1...v1.5.0) (2024-10-11)
+
+
+### Features
+
+* add UPDATE CREATE comic authors method ([#30](https://github.com/Gmayer111/carton9-api/issues/30)) ([f29a766](https://github.com/Gmayer111/carton9-api/commit/f29a766848185c534a5553ff6a6ba43bd484bc3b))
+* create comic categories method ([#32](https://github.com/Gmayer111/carton9-api/issues/32)) ([af84898](https://github.com/Gmayer111/carton9-api/commit/af84898fd88ac79ea87973c9da62b80ff0277113))
+
 ## [1.4.1](https://github.com/Gmayer111/carton9-api/compare/v1.4.0...v1.4.1) (2024-09-26)
 
 
