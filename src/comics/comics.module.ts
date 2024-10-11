@@ -7,12 +7,14 @@ import { CollectionsModule } from 'src/collections/collections.module';
 import { Collection } from 'src/collections/models/collection.models';
 import { Publisher } from 'src/publishers/models/publisher.models';
 import { ComicsAuthorsModule } from 'src/comics/comics-authors/comics-authors.module';
+import { ComicsCategoriesModule } from './comics-categories/comics-categories.module';
 
 @Module({
   imports: [
     SequelizeModule.forFeature([Comic, Collection, Publisher]),
     CollectionsModule,
     ComicsAuthorsModule,
+    ComicsCategoriesModule,
   ],
   controllers: [ComicsController],
   providers: [ComicsService],
