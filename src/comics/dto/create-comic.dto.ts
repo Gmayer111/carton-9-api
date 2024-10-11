@@ -9,6 +9,7 @@ import {
 } from 'class-validator';
 import { CreateUpdateComicsAuthorDto } from '../comics-authors/dto/create-update-comics-author.dto';
 import { Type } from 'class-transformer';
+import { CreateUpdateComicsCategoryDto } from '../comics-categories/dto/create-update-comics-category.dto';
 
 export class CreateComicDto {
   @IsDefined()
@@ -44,4 +45,10 @@ export class CreateComicDto {
   @ValidateNested()
   @Type(() => CreateUpdateComicsAuthorDto)
   Authors: CreateUpdateComicsAuthorDto[];
+
+  @IsOptional()
+  @IsArray()
+  @ValidateNested()
+  @Type(() => CreateUpdateComicsCategoryDto)
+  Categories: CreateUpdateComicsCategoryDto[];
 }
