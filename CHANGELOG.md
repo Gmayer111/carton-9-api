@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/Gmayer111/carton9-api/compare/v1.5.0...v1.5.1) (2024-10-14)
+
+
+### Bug Fixes
+
+* add method to remove comic collection to total column ([#33](https://github.com/Gmayer111/carton9-api/issues/33)) ([d75ab6e](https://github.com/Gmayer111/carton9-api/commit/d75ab6e060c6e1ad14bd3a6af0aa2f8f381d612d))
+
 ## [1.5.0](https://github.com/Gmayer111/carton9-api/compare/v1.4.1...v1.5.0) (2024-10-11)
 
 
