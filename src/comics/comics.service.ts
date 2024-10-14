@@ -44,11 +44,6 @@ export class ComicsService {
   }
 
   async update(id: number, updateComicDto: UpdateComicDto) {
-    console.log(
-      '🚀 ~ ComicsService ~ update ~ updateComicDto:',
-      updateComicDto,
-    );
-    console.log('🚀 ~ ComicsService ~ update ~ id:', id);
     const comic = await this.comicModel.findOne({
       where: { id },
     });
@@ -147,6 +142,24 @@ export class ComicsService {
   }
 
   async remove(id: number) {
+    const comic = await this.comicModel.findOne({
+      where: { id },
+    });
+    const sqlCountQuery = `
+    SELECT C.total FROM Collections C WHERE C.id = :collectionId
+    `;
+
+    const collectionCount: { total: number }[] = await this.sequelize.query(
+      sqlCountQuery,
+      {
+        replacements: { collectionId: comic.collectionId },
+        type: QueryTypes.SELECT,
+      },
+    );
+    await this.collectionService.updateTotalColumn(
+      comic.collectionId,
+      collectionCount[0].total - 1,
+    );
     return await this.comicModel.destroy({
       where: { id },
     });
