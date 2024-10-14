@@ -1,6 +1,6 @@
-### API Passion BD
+### API Carton-9
 
-This API provides LCBD data
+This API provides Carton-9 data
 
 ## Table of contents
 
@@ -12,7 +12,7 @@ This API provides LCBD data
 1. CLone the repository
 
 ```bash
- git clone https://github.com/yourusername/passion-bd-api.git
+ git clone https://github.com/yourusername/carton-9-api.git
 ```
 
 2. Install dependencies:
